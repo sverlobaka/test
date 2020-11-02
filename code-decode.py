@@ -33,7 +33,3 @@ def decompress_string(text):
             decompress = decompress + symbol
             numeral = ''
     return decompress
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
