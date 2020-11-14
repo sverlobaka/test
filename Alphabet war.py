@@ -28,11 +28,12 @@ def fight(text):
             power_right += int(right_side[char])
 
     if power_left > power_right:
-        print("'Left side wins!'")
+        return 'Left side wins!'
     elif power_left < power_right:
-        print("'Right side wins!'")
+        return 'Right side wins!'
     else:
-        print('\"Let\'s fight again!\"')
+        return "Let's fight again!"
+
 
 if __name__ == '__main__':
     import doctest
