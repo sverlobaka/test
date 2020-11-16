@@ -13,13 +13,24 @@ def fight(text):
     >>> fight('wwwwwwz')
     'Left side wins!'
     """
-    side = {'w' : -4, 'p' : -3, 'b' : -2, 's' : -1, 'm' : 4, 'q' : 3, 'd' : 2, 'z' : 1}
-    left_keys = ",".join(side.keys())
+
+    side = {
+        'y': {'left': -1, 'right': 3},
+        'w': {'left': -4, 'right': 0},
+        'p': {'left': -3, 'right': 0},
+        'b': {'left': -2, 'right': 0},
+        's': {'left': -1, 'right': 0},
+        'm': {'left': 0, 'right': 4},
+        'q': {'left': 0, 'right': 3},
+        'd': {'left': 0, 'right': 2},
+        'z': {'left': 0, 'right': 1}
+    }
+    keys = ",".join(side.keys())
     power = 0
 
     for char in text:
-        if char in left_keys or char in left_keys:
-            power += side[char]
+        if char in keys:
+            power += side[char]['left'] + side[char]['right']
 
     if power < 0:
         return 'Left side wins!'
