@@ -12,6 +12,9 @@ def fight(text):
     'Right side wins!'
     >>> fight('wwwwwwz')
     'Left side wins!'
+    >>> fight('wpbs')
+    'Left side wins!'
+
     """
 
     side = {
@@ -25,11 +28,10 @@ def fight(text):
         'd': {'left': 0, 'right': 2},
         'z': {'left': 0, 'right': 1}
     }
-    keys = ",".join(side.keys())
     power = 0
 
     for char in text:
-        if char in keys:
+        if char in side.keys():
             power += side[char]['left'] + side[char]['right']
 
     if power < 0:
