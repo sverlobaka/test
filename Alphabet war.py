@@ -31,7 +31,7 @@ def fight(text):
     power = 0
 
     for char in text:
-        if char in side.keys():
+        if side.get(char):
             power += side[char]['left'] + side[char]['right']
 
     if power < 0:
