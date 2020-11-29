@@ -1,35 +1,18 @@
-def compress_string (text):
-    counter = 0
-    previous = text[0]
-    compress = ''
-    for element in text:
-        if element == previous:
-            counter = counter + 1
-            previous = element
-        else:
-            if counter == 1:
-                compress = str(compress) + str(previous)
-                counter = 1
-                previous = element
-            elif counter == 0:
-                compress = compress
-            else:
-                compress = str(compress) + str(previous) + str(counter)
-            counter = 1
-            previous = element
-    compress = str(compress) + str(previous) + str(counter)
-    return compress
+def fight(text):
+    army = {
+        'army1': {'w': 4, 'p': 3, 'b': 2, 's': 1},
+        'army2': {'m': 4, 'q': 3, 'd': 2, 'z': 1},
+        'army3': {'a': 4, 'e': 3, 'o': 2, 'u': 1, 'i': 1}
+    }
+    power = {}
 
-def decompress_string(text):
-    symbol = text[0]
-    numeral = '0'
-    decompress = ''
-    for element in text:
-        if element >= '0' and element <= '9':
-            numeral = str(numeral) + str(element)
-            decompress = decompress + symbol * (int(numeral) - 1)
-        else:
-            symbol = element
-            decompress = decompress + symbol
-            numeral = ''
-    return decompress
+    for name_army in army.keys():
+        power[name_army] = 0
+
+        for char in text:
+            if army[name_army].get(char):
+                power[name_army] += army[name_army].get(char)
+    max_power = max(power.values())
+    max_power_army = list(power.keys())[list(power.values()).index(max_power)]
+
+    return max_power_army
