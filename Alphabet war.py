@@ -15,11 +15,10 @@ def fight(text):
     }
     power = {}
 
-    for name_army in army.keys():
+    for name_army in army:
         power[name_army] = 0
         for char in text:
-            if army[name_army].get(char):
-                power[name_army] += army[name_army].get(char)
+            power[name_army] += army[name_army].get(char, 0)
     max_power_befor = max(power.values())
     max_power_army_befor = list(power.keys())[list(power.values()).index(max_power_befor)]
     power_compare = {}
@@ -28,9 +27,8 @@ def fight(text):
     max_power_after = max(power.values())
     max_power_army_after = list(power.keys())[list(power.values()).index(max_power_after)]
     power_compare[max_power_army_after] = max_power_after
-
     if power_compare[max_power_army_befor] != power_compare[max_power_army_after]:
-        return "" + max_power_army_befor + " wins!"
+        return f"{max_power_army_befor} wins!"
     else:
         return "Let's fight again!"
 
