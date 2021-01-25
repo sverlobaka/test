@@ -1,36 +1,46 @@
 tree = {}
+
+def append_tree(append_class):
+    if ":" not in append_class:
+        children = append_class
+        tree[children] = []
+    else:
+        children, father = append_class.split(' :')
+        father = father.split()
+        tree[children] = []
+        tree[children] += father
+
+def serch_father(sample_output):
+    if " " not in sample_output:
+        children = sample_output
+        if children in tree:
+            return 'Yes'
+    else:
+        father, children = sample_output.split()
+        all_father = []
+        if (children in tree) and children == father:
+            return 'Yes'
+        elif children in tree:
+            if father in tree[children]:
+                return 'Yes'
+            else:
+                for char in tree[children]:
+                    all_father += char
+                for char in all_father:
+                    all_father += tree[char]
+            if father in all_father:
+                return 'Yes'
+            else:
+                return 'No'
+        else:
+            return 'No'
+
 n = int(input())
 for i in range(n):
-   append_class = input()
-   if ":" not in append_class:
-      children = append_class
-      tree[children] = []
-   else:
-      children, father = append_class.split(' :')
-      father = father.split()
-      tree[children] = []
-      tree[children] += father
+    append_class = str(input())
+    append_tree(append_class)
+
 q = int(input())
 for i in range(q):
     sample_output = input()
-    father, children = sample_output.split()
-    if tree.get(children):
-        if father in tree[children] or father == children:
-            print('Yes')
-        else:
-            search_father = tree[children]
-            verified = []
-            while search_father != []:
-                for char in search_father:
-                    if char not in verified:
-                        if father in tree[char]:
-                            print('Yes')
-                            break
-                        else:
-                            search_father += tree[char]
-                            verified += char
-                            search_father.pop(0)
-            print('No')
-            break
-    else:
-        print('No')
+    print(serch_father(sample_output))
