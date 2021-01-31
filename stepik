@@ -7,42 +7,37 @@ def append_tree(append_class):
     else:
         children, father = append_class.split(' :')
         father = father.split()
-        tree[children] = []
-        tree[children] += father
-
-def serch_father(sample_output):
-    if " " not in sample_output:
-        children = sample_output
-        if children in tree:
-            return 'Yes'
+        if children not in tree:
+            tree[children] = []
+            tree[children] += father
         else:
-            return 'No'
+            tree[children] += father
+
+def search_father_simpl(sample_output): # когда во входных данных теста только одна буква или слово
+    children = sample_output
+    if children in tree:
+        return 'Yes'
     else:
-        father, children = sample_output.split()
-        all_father = []
-        if (children in tree) and children == father:
-            return 'Yes'
-        elif children in tree:
-            if father in tree[children]:
-                return 'Yes'
-            else:
-                for char in tree[children]:
-                    all_father += char
-                for char in all_father:
-                    all_father += tree[char]
-            if father in all_father:
-                return 'Yes'
-            else:
-                return 'No'
-        else:
-            return 'No'
+        return 'No'
 
-n = int(input())
-for i in range(n):
-    append_class = str(input())
-    append_tree(append_class)
+def search_father(father, children): # в входных данных из нескольких слов или символов, разделенных пробелом
+    if (children in tree) and children == father:
+        return 'Yes'
+    elif children in tree:
+        if father in tree[children]:
+            return 'Yes'
+        else:
+            for char in tree[children]:
+                children = char
+                search_father(father, children)
+    else:
+        return 'No'
 
 q = int(input())
 for i in range(q):
     sample_output = input()
-    print(serch_father(sample_output))
+    if " " not in sample_output:
+       search_father_simpl
+    else:
+        father, children = sample_output.split()
+        search_father(father, children)
