@@ -11,21 +11,17 @@ def merge(intervals):
     [[1, 7], [8, 18]]
     """
     result = []
-
-    for char in range(len(intervals)):
-        intervals[char].sort()
     intervals.sort()
-
-    for char in intervals:
+    for a, b in intervals:
         if len(result) == 0:
-            result.append(char)
+            result.append([a, b])
         else:
-            if result[(len(result) - 1)][1] >= char[0] and result[(len(result) - 1)][1] < char[1]:
-                result[(len(result) - 1)] = [result[(len(result) - 1)][0], char[1]]
-            elif result[(len(result) - 1)][1] and result[(len(result) - 1)][1] >= char[1]:
-                result[(len(result) - 1)] = result[(len(result) - 1)]
+            if result[-1:][0][1] >= a and result[-1:][0][1] < b:
+                result[-1:] = [[result[-1:][0][0], b]]
+            elif result[-1:][0][1] >= b:
+                pass
             else:
-                result.append(char)
+                result.append([a, b])
     return result
 
 if __name__ == '__main__':
