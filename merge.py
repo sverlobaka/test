@@ -16,9 +16,9 @@ def merge(intervals):
         if len(result) == 0:
             result.append([a, b])
         else:
-            if result[-1:][0][1] >= a and result[-1:][0][1] < b:
-                result[-1:] = [[result[-1:][0][0], b]]
-            elif result[-1:][0][1] >= b:
+            if result[-1][1] >= a and result[-1][1] < b:
+                result[-1] = [result[-1][0], b]
+            elif result[-1][1] >= b:
                 pass
             else:
                 result.append([a, b])
