@@ -10,8 +10,8 @@ def merge(intervals):
     >>> merge([[1, 3], [2, 6], [8, 10], [15, 18], [1, 7], [3, 5], [10, 16]])
     [[1, 7], [8, 18]]
     """
-    result = [intervals[0]]
     intervals.sort()
+    result = [intervals[0]]
     for a, b in intervals[1:]:
         if len(result) == 0:
             result.append([a, b])
