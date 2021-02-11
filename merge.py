@@ -13,15 +13,12 @@ def merge(intervals):
     intervals.sort()
     result = [intervals[0]]
     for a, b in intervals[1:]:
-        if len(result) == 0:
-            result.append([a, b])
+        if result[-1][1] >= a and result[-1][1] < b:
+            result[-1] = [result[-1][0], b]
+        elif result[-1][1] >= b:
+            continue
         else:
-            if result[-1][1] >= a and result[-1][1] < b:
-                result[-1] = [result[-1][0], b]
-            elif result[-1][1] >= b:
-                pass
-            else:
-                result.append([a, b])
+            result.append([a, b])
     return result
 
 if __name__ == '__main__':
