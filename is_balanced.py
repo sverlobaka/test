@@ -1,40 +1,46 @@
 def is_balanced(text):
     """
-    >>> is_balanced('')
+    >>> is_balanced("")
     True
-    >>> is_balanced('Sensei says yes!')
+    >>> is_balanced("Sensei says yes!")
     True
-    >>> is_balanced('))((')
+    >>> is_balanced("))((")
     False
-    >>> is_balanced('(Sensei says yes!)')
+    >>> is_balanced("(Sensei says yes!)")
     True
-    >>> is_balanced('(Sensei says no!')
+    >>> is_balanced("(Sensei says no!")
     False
-    >>> is_balanced('(Sensei) (says) (yes!)')
+    >>> is_balanced("(Sensei) (says) (yes!)")
     True
-    >>> is_balanced('(Sensei (says) yes!)')
+    >>> is_balanced("(Sensei (says) yes!)")
     True
-    >>> is_balanced('((Sensei) says) no!)')
+    >>> is_balanced("((Sensei) says) no!)")
     False
-    >>> is_balanced('(Sensei (says) (yes!))')
+    >>> is_balanced("(Sensei (says) (yes!))")
     True
-    """
-    count_open = 0
-    count_close = 0
+    >>> is_balanced("(Sensei [says] yes!)")
+    True
+    >>> is_balanced("(Sensei [says) no!]")
+    False
 
-    if text.find(')') < text.find('('):
+    """
+    balanced = []
+    open = ["(", "[", "{"]
+    close = [")", "]", "}"]
+    count_quote = 0
+    for char in text:
+        if char in open:
+            balanced.append(char)
+        elif char in close:
+            if len(balanced) > 0 and open.index(balanced[len(balanced) - 1]) == close.index(char):
+                balanced.pop()
+            else:
+                return False
+
+    if len(balanced) > 0:
         return False
     else:
-        for char in text:
-            if char == '(':
-                count_open += 1
-            elif char == ')':
-                count_close += 1
-
-        if count_close == count_open:
-            return True
-        else:
-            return False
+        return True
 
 if __name__ == '__main__':
     import doctest
