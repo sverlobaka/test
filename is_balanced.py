@@ -22,8 +22,8 @@ def is_balanced(text):
     True
     >>> is_balanced("(Sensei [says) no!]")
     False
-
     """
+
     balanced = []
     open = ["(", "[", "{"]
     close = [")", "]", "}"]
@@ -32,12 +32,12 @@ def is_balanced(text):
         if char in open:
             balanced.append(char)
         elif char in close:
-            if len(balanced) > 0 and open.index(balanced[len(balanced) - 1]) == close.index(char):
+            if len(balanced) > 0 and open.index(balanced[-1]) == close.index(char):
                 balanced.pop()
             else:
                 return False
 
-    if len(balanced) > 0:
+    if balanced:
         return False
     else:
         return True
