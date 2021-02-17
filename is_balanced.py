@@ -31,7 +31,7 @@ def is_balanced(text):
         if char in open_close:
             balanced.append(char)
         elif char in open_close.values():
-            if len(balanced) > 0 and char in open_close[balanced[-1]]:
+            if balanced and char in open_close[balanced[-1]]:
                 balanced.pop()
             else:
                 return False
