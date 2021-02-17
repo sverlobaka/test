@@ -25,18 +25,16 @@ def is_balanced(text):
     """
 
     balanced = []
-    open = ["(", "[", "{"]
-    close = [")", "]", "}"]
+    open_close = {"(": ")", "[": "]", "{": "}"}
     count_quote = 0
     for char in text:
-        if char in open:
+        if char in open_close:
             balanced.append(char)
-        elif char in close:
-            if len(balanced) > 0 and open.index(balanced[-1]) == close.index(char):
+        elif char in open_close.values():
+            if len(balanced) > 0 and char in open_close[balanced[-1]]:
                 balanced.pop()
             else:
                 return False
-
     return  not bool(balanced)
 
 if __name__ == '__main__':
