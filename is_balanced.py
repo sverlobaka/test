@@ -37,10 +37,7 @@ def is_balanced(text):
             else:
                 return False
 
-    if balanced:
-        return False
-    else:
-        return True
+    return  not bool(balanced)
 
 if __name__ == '__main__':
     import doctest
