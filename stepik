@@ -20,7 +20,7 @@ def search_father_simpl(sample_output): # когда во входных дан�
     else:
         return 'No'
 
-def search_father(father, children): # в входных данных из нескольких слов или символов, разделенных пробелом
+def search_father(father, children): # входные данные из нескольких слов или символов, разделенных пробелом
     if (children in tree) and children == father:
         return 'Yes'
     elif children in tree:
