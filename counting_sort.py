@@ -1,12 +1,5 @@
 def counting_sort(numbers):
-    """
-    >>> merge([])
-    []
-    >>> merge([2])
-    [2, 1]
-    >>> merge([2, 1, 1, 1, 1])
-    [[2,1], [1,4]]
-    """
+    
     max_numbers = max(numbers)
     counters = [0] * (max_numbers + 1)
 
