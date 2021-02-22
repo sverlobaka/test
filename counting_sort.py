@@ -1,15 +1,29 @@
 def counting_sort(numbers):
-    
-    max_numbers = max(numbers)
-    counters = [0] * (max_numbers + 1)
+    """
+    >>> counting_sort([])
+    []
+    >>> counting_sort([2])
+    [2]
+    >>> counting_sort([2, 1, 1, 1, 1])
+    [1, 1, 1, 1, 2]
+    """
+    if len(numbers) < 1:
+        return numbers
+    else:
+        max_elem = max(numbers)
+        counters = [0] * (max_elem + 1)
 
-    for i in range(len(numbers)):
-        counters[numbers[i]] += 1
+        for n in numbers:
+            counters[n] += 1
 
-    pos = 0
-    for j in range(len(counters)):
-        for i in range(counters[j]):
-            numbers[pos] = j
-            pos += 1
+        pos = 0
+        for i in range(len(counters)):
+            for j in range(counters[i]):
+                numbers[pos] = i
+                pos += 1
 
-    return counters
+    return numbers
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
