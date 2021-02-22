@@ -6,6 +6,8 @@ def counting_sort(numbers):
     [2]
     >>> counting_sort([2, 1, 1, 1, 1])
     [1, 1, 1, 1, 2]
+    >>> counting_sort([1, 1, 1, 1])
+    [1, 1, 1, 1]
     """
     if len(numbers) < 1:
         return numbers
@@ -16,13 +18,13 @@ def counting_sort(numbers):
         for n in numbers:
             counters[n] += 1
 
-        pos = 0
+        result = []
         for i in range(len(counters)):
-            for j in range(counters[i]):
-                numbers[pos] = i
-                pos += 1
+            if counters[i] != 0:
+                x = [i] * counters[i]
+                result.extend(x)
 
-    return numbers
+    return result
 
 if __name__ == '__main__':
     import doctest
