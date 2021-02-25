@@ -1,6 +1,5 @@
 def sort_letters(text):
     """
-
     >>> sort_letters('aaabccccdeefffff')
     'fffffccccaaaeebd'
     >>> sort_letters('abcdefghijklmnop')
@@ -11,31 +10,25 @@ def sort_letters(text):
     'aab'
     >>> sort_letters('abcabccba')
     'aaabbbccc'
+    >>> sort_letters('dcbeeaaabccbadeee')
+    'eeeeeaaaacccbbbdd'
     """
 
-    if len(text) < 1:
-        return text
-    else:
-        text_sort = sorted(text)
-        counters = [''] * len(text_sort)
-        result = ''
-        j = text_sort[0]
-        for i in text_sort:
-            if j == i:
-                continue
-            else:
-                x = text_sort.count(j)
-                counters[x] += j
-                j = i
-                count = 1
-        x = text_sort.count(i)
-        counters[x] += i
+    text_counter = {}
+    sorted_text = {}
+    result = ''
+    for char in text:
+        if text_counter.get(char):
+            continue
+        else:
+            text_counter[char] = text.count(char)
+    sorted_keys = sorted(text_counter, key=text_counter.get, reverse=True)
 
-        for i in range((len(counters) - 1), -1, -1):
-            if counters[i] != '':
-                for char in counters[i]:
-                    char = char * i
-                    result += char
+    for keys in sorted_keys:
+        sorted_text[keys] = text_counter[keys]
+
+    for keys in sorted_text:
+        result += keys * sorted_text[keys]
     return result
 
 if __name__ == '__main__':
