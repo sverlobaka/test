@@ -19,9 +19,9 @@ def sort_letters(text):
     result = ''
     for char in text:
         if text_counter.get(char):
-            continue
+            text_counter[char] += 1
         else:
-            text_counter[char] = text.count(char)
+            text_counter[char] = 1
     sorted_keys = sorted(text_counter, key=text_counter.get, reverse=True)
 
     for keys in sorted_keys:
