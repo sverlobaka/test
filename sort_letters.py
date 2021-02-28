@@ -15,20 +15,20 @@ def sort_letters(text):
     """
 
     text_counter = {}
-    sorted_text = {}
+    sorted_text = []
     result = ''
     for char in text:
         if text_counter.get(char):
-            text_counter[char] += 1
+            continue
         else:
-            text_counter[char] = 1
-    sorted_keys = sorted(text_counter, key=text_counter.get, reverse=True)
+            text_counter[char] = text.count(char)
 
-    for keys in sorted_keys:
-        sorted_text[keys] = text_counter[keys]
-
-    for keys in sorted_text:
-        result += keys * sorted_text[keys]
+    for keys, values in text_counter.items():
+        x = [values, keys]
+        sorted_text.append(x)
+    sorted_text = sorted(sorted_text, reverse=True)
+    for i in range(len(sorted_text)):
+        result += sorted_text[i][0] * sorted_text[i][1]
     return result
 
 if __name__ == '__main__':
