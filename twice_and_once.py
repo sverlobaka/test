@@ -15,7 +15,7 @@ def twice_and_once(numbers):
 
     if len(numbers) == 1:
         return numbers[0]
-    elif len(numbers) < 0:
+    elif len(numbers) < 1:
         return
     elif len(numbers) == 2:
         if numbers[:1] == numbers[1:]:
